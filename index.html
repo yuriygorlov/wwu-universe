@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071c2b">
+  <meta name="description" content="WWU — интерактивная карта науки и направлений WEBA WORLD UNIVERSE.">
+  <title>WWU · WEBA WORLD UNIVERSE</title>
+  <link rel="stylesheet" href="assets/app.css">
+  <script>if (/(?:[?&])tv=(?:1|true)(?:&|$)/.test(location.search)) document.documentElement.classList.add('tv-mode');</script>
+  <script defer src="assets/vendor/d3.min.js"></script>
+  <script defer src="assets/world-land.js"></script>
+  <script defer src="assets/model.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+<main id="wwu-universe">
+  <header class="wwu-header">
+    <div><h1>WWU</h1><p class="brand-name">WEBA WORLD UNIVERSE</p></div>
+    <div class="header-actions">
+      <button type="button" id="wwu-auto" aria-pressed="false">Автовращение</button>
+      <button type="button" id="wwu-tv" aria-pressed="false">Режим ТВ</button>
+      <button type="button" id="wwu-fullscreen">Полный экран</button>
+    </div>
+  </header>
+  <div class="wwu-controls" id="wwu-controls">
+    <label>Направление<select id="wwu-node" aria-label="Выбрать направление WWU"></select></label>
+    <label>Пересечение<select id="wwu-link" aria-label="Выбрать связь направлений" disabled><option>Выберите направление</option></select></label>
+    <button type="button" class="tv-only" id="wwu-close-menu">К модели</button>
+    <p class="tv-only menu-help">↑ ↓ выбор в списке · ← → соседний элемент · OK открыть список · Back к модели</p>
+  </div>
+  <div class="wwu-stage">
+    <canvas id="wwu-canvas" tabindex="0" role="img" aria-label="Трёхмерная карта WWU. Стрелки вращают сферу; Enter открывает меню. В меню можно выбрать направление и связь.">Для просмотра модели включите JavaScript в браузере.</canvas>
+    <span class="stage-caption">НАУКА · ЗНАНИЯ · ПРИМЕНЕНИЕ</span>
+  </div>
+  <footer class="wwu-footer">
+    <div class="wwu-lower">
+      <div class="wwu-legend"><span><b class="wwu-science">●</b> Исследования</span><span><b class="wwu-business">◆</b> Применение</span><span>◌ Гипотезы</span></div>
+      <div class="view-actions" aria-label="Управление моделью">
+        <button type="button" id="wwu-left" aria-label="Повернуть влево">↶</button>
+        <button type="button" id="wwu-right" aria-label="Повернуть вправо">↷</button>
+        <button type="button" id="wwu-minus" aria-label="Отдалить">−</button>
+        <button type="button" id="wwu-plus" aria-label="Приблизить">+</button>
+        <button type="button" id="wwu-home">Общий вид</button>
+      </div>
+    </div>
+    <p id="wwu-detail" aria-live="polite">Все связи WWU</p>
+    <div class="wwu-foot"><span id="wwu-help">Вращайте мышью или пальцем · Масштаб: колесо / щипок</span><span>Концептуальная карта · Узлы размещены условно</span></div>
+  </footer>
+  <button type="button" class="tv-menu-trigger tv-only" id="wwu-menu">Меню · OK</button>
+  <div id="wwu-status" role="status" aria-live="polite"></div>
+  <span id="wwu-color-probe" aria-hidden="true"></span>
+  <noscript><p class="no-script">Для интерактивной модели требуется JavaScript.</p></noscript>
+</main>
+</body>
+</html>

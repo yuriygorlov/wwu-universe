@@ -1,0 +1,85 @@
+:root {
+  color-scheme: light;
+  --background: #f6fbfd;
+  --foreground: #123447;
+  --muted-foreground: #526d7e;
+  --border: #bad4df;
+  --viz-series-1: #009ec0;
+  --viz-series-2: #d37620;
+  --surface: #ffffff;
+  --focus: #007f9b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--foreground); background: var(--background); }
+button, select { font: inherit; color: inherit; }
+button { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 9px 14px; min-height: 42px; cursor: pointer; }
+button:hover { border-color: var(--focus); }
+button[aria-pressed="true"] { background: var(--foreground); color: var(--background); border-color: var(--foreground); }
+:focus { outline: 3px solid var(--focus); outline-offset: 4px; }
+button:disabled, select:disabled { opacity: .5; cursor: default; }
+select { width: 100%; padding: 10px 36px 10px 12px; min-height: 44px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; }
+#wwu-universe { width: 100%; max-width: 1680px; margin: auto; padding: 24px 32px; }
+.wwu-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+h1 { margin: 0; font-size: 38px; letter-spacing: -.05em; font-weight: 600; line-height: 1.1; }
+.brand-name { margin: 4px 0 0; font-size: 12px; font-weight: 500; letter-spacing: .17em; }
+.header-actions, .view-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.wwu-controls { display: flex; gap: 18px; margin-top: 24px; align-items: flex-end; }
+.wwu-controls label { display: block; flex: 1; min-width: 0; font-size: 14px; }
+.wwu-controls select { display: block; margin-top: 5px; font-size: 16px; }
+.wwu-stage { width: 100%; position: relative; height: 65vh; min-height: 420px; max-height: 850px; }
+#wwu-canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#wwu-canvas:active { cursor: grabbing; }
+#wwu-canvas:focus { outline-offset: -8px; outline-color: var(--border); }
+.stage-caption { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-size: 11px; letter-spacing: .18em; color: var(--muted-foreground); pointer-events: none; }
+.wwu-lower { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.wwu-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; }
+.wwu-legend b { font-weight: 400; margin-right: 4px; }
+.wwu-science { color: var(--viz-series-1); }.wwu-business { color: var(--viz-series-2); }
+#wwu-detail { margin: 16px 0; min-height: 2.9em; max-width: 1120px; }
+.wwu-foot { display: flex; gap: 10px 24px; justify-content: space-between; flex-wrap: wrap; color: var(--muted-foreground); font-size: 12px; }
+#wwu-color-probe { position: absolute; visibility: hidden; pointer-events: none; }
+.tv-only { display: none; }
+#wwu-status { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); max-width: 90%; border-radius: 10px; background: var(--surface); color: var(--foreground); padding: 12px 18px; box-shadow: 0 4px 30px #0002; z-index: 10; }
+#wwu-status:empty { display: none; }
+.no-script { padding: 30px; }
+/* TV mode deliberately owns its palette and fills the browser viewport. */
+.tv-mode { color-scheme: dark; --background: #071c2b; --foreground: #edfaff; --muted-foreground: #a9c4d2; --border: #345567; --viz-series-1: #28d0e5; --viz-series-2: #f3b46c; --surface: #102e41; --focus: #67e9fa; font-size: 23px; }
+.tv-mode #wwu-universe { width: 100%; max-width: none; height: 100vh; padding: 30px 4vw 26px; display: flex; flex-direction: column; overflow: hidden; }
+.tv-mode .wwu-header { flex: 0 0 auto; }
+.tv-mode h1 { font-size: 48px; }.tv-mode .brand-name { font-size: 13px; }
+.tv-mode .header-actions { display: none; }
+.tv-mode .wwu-stage { min-height: 0; max-height: none; height: auto; flex: 1 1 auto; }
+.tv-mode .stage-caption { top: 12px; font-size: 13px; }
+.tv-mode .wwu-legend { font-size: 16px; }.tv-mode .wwu-foot { font-size: 14px; }
+.tv-mode .view-actions { display: none; }
+.tv-mode #wwu-detail { font-size: 22px; margin: 12px 0; min-height: 2.8em; max-width: none; }
+.tv-mode .wwu-controls { display: none; }
+.tv-mode .tv-only { display: block; }
+.tv-mode .tv-menu-trigger { position: fixed; top: 34px; right: 4vw; font-size: 18px; z-index: 2; }
+.tv-mode.tv-controls-open .wwu-controls { display: grid; grid-template-columns: 1fr 1fr; position: fixed; z-index: 5; top: 18%; left: 16%; right: 16%; margin: 0; background: var(--surface); padding: 32px; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 0 0 100vmax #0008; gap: 24px; }
+.tv-mode.tv-controls-open .wwu-controls label { font-size: 20px; }
+.tv-mode.tv-controls-open .wwu-controls select { font-size: 22px; min-height: 58px; }
+.tv-mode.tv-controls-open .wwu-controls button { font-size: 20px; min-height: 54px; }
+.tv-mode.tv-controls-open .menu-help { margin: 0; grid-column: 1 / -1; font-size: 14px; color: var(--muted-foreground); }
+.tv-mode.tv-controls-open .header-actions { display: flex; position: fixed; top: 30px; left: 20%; right: 20%; justify-content: center; z-index: 6; }
+.tv-mode.tv-controls-open .view-actions { display: flex; position: fixed; bottom: 6vh; left: 20%; right: 20%; justify-content: center; z-index: 6; }
+@media (min-width: 2500px) { .tv-mode { font-size: 36px; } .tv-mode #wwu-detail { font-size: 32px; } .tv-mode .wwu-legend { font-size: 25px; } .tv-mode .wwu-foot { font-size: 22px; } }
+@media (max-width: 720px) {
+  #wwu-universe { padding: 20px 16px; }.wwu-header { align-items: flex-start; flex-direction: column; } h1 { font-size: 32px; }
+  .header-actions { gap: 6px; } .header-actions button { font-size: 13px; padding: 8px 10px; }
+  .wwu-controls { flex-direction: column; align-items: stretch; gap: 12px; }.wwu-controls label { width: 100%; }
+  .wwu-stage { min-height: 390px; height: 60vh; max-height: 520px; }.stage-caption { font-size: 10px; }
+  .wwu-lower { gap: 16px; }.wwu-legend { font-size: 12px; gap: 10px; }.view-actions button { min-width: 40px; }
+  .tv-mode #wwu-universe { padding: 16px; }.tv-mode h1 { font-size: 28px; }.tv-mode .brand-name { font-size: 10px; }
+  .tv-mode .wwu-header { flex-direction: row; }.tv-mode #wwu-detail { font-size: 16px; }.tv-mode .wwu-legend { font-size: 12px; }
+  .tv-mode .wwu-foot { font-size: 11px; }.tv-mode .wwu-foot span:last-child { display: none; }.tv-mode .stage-caption { display: none; }
+  .tv-mode { font-size: 15px; }.tv-mode .tv-menu-trigger { top: 16px; right: 16px; font-size: 14px; }
+  .tv-mode.tv-controls-open .wwu-controls { top: 23%; left: 16px; right: 16px; padding: 20px; grid-template-columns: 1fr; gap: 14px; }
+  .tv-mode.tv-controls-open .wwu-controls label { font-size: 14px; }.tv-mode.tv-controls-open .wwu-controls select { font-size: 16px; min-height: 44px; }
+  .tv-mode.tv-controls-open .wwu-controls button { font-size: 16px; min-height: 44px; }
+  .tv-mode.tv-controls-open .header-actions { top: 76px; left: 16px; right: 16px; }
+  .tv-mode.tv-controls-open .view-actions { bottom: 20px; left: 16px; right: 16px; }
+}
